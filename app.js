@@ -1,6 +1,6 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mysql from 'mysql2'; // Tetap gunakan mysql2
+const express = require('express');
+const bodyParser = require('body-parser'); // Tetap gunakan body-parser;
+const mysql = require('mysql2') // Tetap gunakan mysql2
 
 const app = express();
 
