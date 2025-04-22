@@ -14,7 +14,7 @@ const pool = mysql.createPool({
     connectionLimit: 10, // Jumlah koneksi maksimum di pool
     host: 'localhost',
     user: 'root',      // sesuaikan dengan user mysql anda
-    password: '',      // sesuaikan dengan password mysql anda
+    password: 'testing123',      // sesuaikan dengan password mysql anda
     database: 'kalkulator',
 });
 
