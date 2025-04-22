@@ -1,0 +1,66 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <title>Kalkulator Berat Badan Ideal</title>  
+  <style>  
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 2em; }  
+    form div { margin-bottom: 1em; }  
+    table {border-collapse: collapse; width: 100%; margin-top: 2em; }  
+    th, td { border: 1px solid #ccc; padding: 0.5em; text-align: center; }  
+  </style>  
+  <link rel="style" href="/public/style.css">
+</head>  
+<body>  
+  <h2>Kalkulator Berat Badan Ideal</h2>  
+  <form action="/hitung" method="post">  
+    <div>  
+      <label>Nama: <input type="text" name="nama" required /></label>  
+    </div>  
+    <div>  
+      <label>Jenis Kelamin:  
+        <select name="jenis_kelamin" required>  
+          <option value="">--Pilih--</option>  
+          <option value="Laki-laki">Laki-laki</option>  
+          <option value="Perempuan">Perempuan</option>  
+        </select>  
+      </label>  
+    </div>  
+    <div>  
+      <label>Tinggi (cm): <input type="number" name="tinggi" required min="50" max="300" /></label>  
+    </div>  
+    <div>  
+      <label>Berat Badan (kg): <input type="number" name="berat" required min="10" max="300" /></label>  
+    </div>  
+    <button type="submit">Hitung Berat Ideal</button>  
+  </form>  
+
+  <% if(records.length > 0){ %>  
+  <h3>Riwayat Kalkulasi Terakhir</h3>  
+  <table>  
+    <thead>  
+      <tr>  
+        <th>Nama</th>  
+        <th>Jenis Kelamin</th>  
+        <th>Tinggi (cm)</th>  
+        <th>Berat (kg)</th>  
+        <th>Berat Ideal (kg)</th>  
+        <th>Tanggal</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <% records.forEach(function(rec){ %>  
+        <tr>  
+          <td><%= rec.nama %></td>  
+          <td><%= rec.jenis_kelamin %></td>  
+          <td><%= rec.tinggi %></td>  
+          <td><%= rec.berat %></td>  
+          <td><%= rec.berat_ideal %></td>  
+          <td><%= rec.tanggal.toLocaleString() %></td>  
+        </tr>  
+      <% }) %>  
+    </tbody>  
+  </table>  
+  <% } %>  
+</body>  
+</html>
