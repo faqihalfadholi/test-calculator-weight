@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2')
@@ -12,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const pool = mysql.createPool({
     connectionLimit: 10, 
-    host: 'localhost',
-    user: 'root',     
-    password: 'testing123',   
-    database: 'kalkulator',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,     
+    password: process.env.DB_PASSWORD,   
+    database: process.env.DB_NAME,
 });
 
 
