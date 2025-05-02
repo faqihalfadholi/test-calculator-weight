@@ -1,174 +1,158 @@
-/* === Global Styles & Resets === */
 * {
-    box-sizing: border-box; /* Memudahkan perhitungan lebar & padding */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif; /* Atau ganti font modern lain jika diinginkan */
-    background-color: #f8f9fa;  /* Warna latar belakang netral sedikit abu-abu */
-    color: #343a40; /* Warna teks utama gelap */
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
     line-height: 1.6;
-    padding: 2em; /* Padding di sekitar body */
-}
-
-/* === Container Utama === */
-.container { /* Anda mungkin perlu menambahkan <div class="container"> di EJS membungkus konten */
-    max-width: 750px; /* Sedikit lebih lebar */
-    margin: 2em auto; /* Centering dan margin atas/bawah */
-    background-color: #ffffff; /* Latar belakang putih untuk konten utama */
     padding: 2em;
-    border-radius: 8px; /* Sudut membulat */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Shadow halus */
 }
 
-/* === Headings === */
+.container {
+    max-width: 750px;
+    margin: 2em auto;
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
 h2, h3 {
-    color: #212529; /* Warna heading sedikit lebih gelap */
+    color: #212529;
     margin-bottom: 1em;
-    text-align: center; /* Pusatkan judul */
+    text-align: center;
 }
 
 h3 {
-    margin-top: 2em; /* Jarak sebelum bagian riwayat */
-    border-top: 1px solid #dee2e6; /* Garis pemisah halus */
+    margin-top: 2em;
+    border-top: 1px solid #dee2e6;
     padding-top: 1.5em;
 }
 
-
-/* === Form Styles === */
 form {
-    margin-bottom: 2em; /* Jarak setelah form */
+    margin-bottom: 2em;
 }
 
 form div {
-    margin-bottom: 1.2em; /* Jarak antar elemen form */
+    margin-bottom: 1.2em;
 }
 
 label {
-    display: block; /* Label di atas input */
+    display: block;
     font-weight: bold;
-    margin-bottom: 0.5em; /* Jarak antara label dan input */
+    margin-bottom: 0.5em;
     color: #495057;
 }
 
 input[type="text"],
 input[type="number"],
 select {
-    width: 100%; /* Input mengisi lebar kontainer */
-    padding: 0.8em 1em; /* Padding di dalam input */
+    width: 100%;
+    padding: 0.8em 1em;
     font-size: 1em;
-    border: 1px solid #ced4da; /* Border halus */
-    border-radius: 4px; /* Sudut input sedikit membulat */
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transisi halus */
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
-    border-color: #80bdff; /* Warna border saat fokus (biru) */
-    outline: 0; /* Hapus outline default */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Efek glow saat fokus */
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* === Button Styles === */
 button {
-    padding: 0.8em 1.5em; /* Padding tombol */
+    padding: 0.8em 1.5em;
     font-size: 1em;
     font-weight: bold;
     border: none;
-    border-radius: 4px; /* Sudut membulat */
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.1s ease; /* Transisi halus */
-    display: inline-block; /* Agar bisa diatur alignmentnya jika perlu */
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    display: inline-block;
     text-align: center;
 }
 
 button:hover {
-    opacity: 0.9; /* Sedikit transparan saat hover */
+    opacity: 0.9;
 }
 
 button:active {
-    transform: scale(0.98); /* Efek sedikit mengecil saat diklik */
+    transform: scale(0.98);
 }
 
-/* Tombol Submit Utama */
 .btn-submit {
-    background-color: #0d6efd; /* Warna biru modern */
+    background-color: #0d6efd;
     color: white;
-    width: 100%; /* Tombol submit mengisi lebar */
+    width: 100%;
     margin-top: 0.5em;
 }
 
 .btn-submit:hover {
-    background-color: #0b5ed7; /* Warna biru lebih gelap saat hover */
+    background-color: #0b5ed7;
 }
 
-
-/* === History Section === */
 .history-controls {
-    margin-bottom: 1.5em; /* Jarak tombol hapus ke tabel */
-    text-align: right; /* Posisi tombol di kanan */
+    margin-bottom: 1.5em;
+    text-align: right;
 }
 
-/* Tombol Hapus Riwayat */
 .clear-btn {
-    background-color: #dc3545; /* Warna merah modern untuk bahaya */
+    background-color: #dc3545;
     color: white;
-    width: 100%; /* Tombol submit mengisi lebar */
+    width: 100%;
     margin-top: 0.5em;
 }
 
 .clear-btn:hover {
-    background-color: #c82333; /* Warna merah lebih gelap saat hover */
+    background-color: #c82333;
 }
 
-
-/* === Table Styles === */
 table {
-    border-collapse: collapse; /* Pastikan border menyatu */
+    border-collapse: collapse;
     width:100%;
-    margin-top: 1em; /* Jarak dari atas (setelah tombol hapus) */
-    background-color: #ffffff; /* Mungkin tidak perlu jika container sudah putih */
-    border: 1px solid #dee2e6; /* Border luar tabel */
-    border-radius: 4px; /* Cocokkan dengan elemen lain */
-    overflow: hidden; /* Agar border-radius bekerja dengan baik */
+    margin-top: 1em;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 0.9em 1em; /* Padding sel */
-    text-align: left; /* Teks rata kiri lebih mudah dibaca di tabel */
-    border-bottom: 1px solid #dee2e6; /* Garis pemisah antar baris */
+    padding: 0.9em 1em;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
 }
 
-/* Hilangkan border bawah di baris terakhir */
 tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* Table Header */
 thead th {
-    background-color: #e9ecef; /* Latar belakang header abu-abu muda */
+    background-color: #e9ecef;
     font-weight: bold;
     color: #495057;
-    text-align: center; /* Header bisa ditengah */
-}
-
-/* Hover effect untuk baris tabel (opsional) */
-tbody tr:hover {
-    background-color: #f1f3f5; /* Warna latar sedikit berubah saat hover */
-}
-
-/* Penyesuaian kecil untuk kolom tertentu jika perlu */
-td:nth-child(3), /* Tinggi */
-td:nth-child(4), /* Berat */
-td:nth-child(5) { /* Berat Ideal */
-    text-align: center; /* Angka mungkin lebih baik ditengah */
-}
-
-td:last-child { /* Tanggal */
     text-align: center;
-    font-size: 0.9em; /* Tanggal bisa sedikit lebih kecil */
-    color: #6c757d; /* Warna abu-abu untuk tanggal */
+}
+
+tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) {
+    text-align: center;
+}
+
+td:last-child {
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
 }
