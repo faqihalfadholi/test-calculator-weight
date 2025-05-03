@@ -1,35 +1,36 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2')
+const mysql = require('mysql2');
+const { Connector } = require('@google-cloud/cloud-sql-connector');
 
 const app = express();
 
-
+// Setup view engine dan body parser
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Inisialisasi Cloud SQL Connector
+const connector = new Connector();
 
-const pool = mysql.createPool({
-    connectionLimit: 10, 
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,     
-    password: process.env.DB_PASSWORD,   
-    database: process.env.DB_NAME,
-});
+async function createPool() {
+    const clientOpts = await connector.getOptions({
+        instanceConnectionName: process.env.DB_HOST,  // gunakan instance connection name dari .env
+        ipType: 'PUBLIC',  // Anda dapat menggunakan 'PRIVATE' jika instance Cloud SQL Anda menggunakan IP privat
+    });
 
+    return mysql.createPool({
+        ...clientOpts,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+    });
+}
 
-pool.getConnection((err, connection) => {
-    if (err) {
-        console.error("Error saat menghubungkan ke database:", err);
-        process.exit(1);
-    }
-    if (connection) {
-        connection.release();
-        console.log("Terhubung ke database MySQL (menggunakan pool)");
-    }
-});
+// Buat koneksi pool
+let pool;
+createPool().then(p => pool = p);
 
 function hitungBeratIdeal(jenisKelamin, tinggi) {
     let beratIdeal;
@@ -42,17 +43,15 @@ function hitungBeratIdeal(jenisKelamin, tinggi) {
 }
 
 function cleanupOldRecords(maxRecords = 5) {
-    const sql = `
-        DELETE FROM berat_ideal 
+    const sql = `DELETE FROM berat_ideal 
         WHERE id NOT IN (
             SELECT id FROM (
                 SELECT id FROM berat_ideal 
                 ORDER BY tanggal DESC 
                 LIMIT ?
             ) AS temp
-        )
-    `;
-    
+        )`;
+
     pool.query(sql, [maxRecords], (err, result) => {
         if (err) {
             console.error('Error saat membersihkan data lama:', err);
@@ -66,8 +65,7 @@ app.get('/', (req, res) => {
     pool.query('SELECT * FROM berat_ideal ORDER BY tanggal DESC LIMIT 10', (err, results) => {
         if (err) {
             console.error('Error fetching records:', err);
-        
-            return res.status(500).send('Gagal mengambil data riwayat.'); 
+            return res.status(500).send('Gagal mengambil data riwayat.');
         }
         res.render('index', { records: results });
     });
@@ -91,7 +89,7 @@ app.post('/hitung', (req, res) => {
             return res.status(500).send('Gagal menyimpan data.');
         }
 
-        cleanupOldRecords(10); 
+        cleanupOldRecords(10);
         
         res.redirect('/');
     });
@@ -113,3 +111,5 @@ app.post('/clear-history', (req, res) => {
 app.listen(3000, () => {
     console.log('Server berjalan di http://localhost:3000');
 });
+
+
